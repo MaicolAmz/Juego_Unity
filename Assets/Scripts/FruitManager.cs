@@ -28,7 +28,6 @@ public class FruitManager : MonoBehaviour
     {
         if (transform.childCount == 0)
         {
-            
             transition.SetActive(true);
             levelCleared.gameObject.SetActive(true);
             //Cambiar de Nivel o Escena
@@ -36,7 +35,19 @@ public class FruitManager : MonoBehaviour
         }
     }
     void ChangeScene(){
+        createScore();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+    }
+
+    IEnumerator createScore()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("username", 1);
+        form.AddField("puntajes", 300);
+
+        WWW w = new WWW("https://test1unityyavirac.herokuapp.com/route/createScore.php", form);
+        yield return w;
+        Debug.Log(w.text);
     }
 
     
