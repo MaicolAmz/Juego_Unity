@@ -35,9 +35,17 @@ public class EscenasManager : MonoBehaviour
 
         m_networkManager.CheckUser(m_loginUsernameInput.text, m_loginPasswordInput.text, delegate (CResponse res)
         {
-            useSinRegister();
-            //m_text.text = res.message;
-            m_text.color = Color.green;
+            m_text.text = res.message;
+
+            if (res.done)
+            {
+                useSinRegister();
+                m_text.color = Color.green;
+            }
+            else
+            {
+                m_text.color = Color.red;
+            }
         });
     }
 
@@ -56,7 +64,15 @@ public class EscenasManager : MonoBehaviour
             m_networkManager.CrearUser(m_usernameInput.text, m_passwordInput.text, delegate(CResponse res)
             {
                 m_text.text = res.message;
-                m_text.color = Color.green;
+                if (res.done)
+                {
+                    m_text.color = Color.green;
+                    useSinRegister();
+                }
+                else
+                {
+                    m_text.color = Color.red;
+                }
             });
         }
         else
@@ -67,12 +83,14 @@ public class EscenasManager : MonoBehaviour
     }
     public void ShowLogin()
     {
+        m_text.text = "";
         m_registerUI.SetActive(false);
         m_loginUI.SetActive(true);
     }
 
     public void ShowRegister()
     {
+        m_text.text = "";
         m_registerUI.SetActive(true);
         m_loginUI.SetActive(false);
     }

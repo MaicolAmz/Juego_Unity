@@ -1112,8 +1112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0957052bb1c5c1f47a07e7c8a3f2b8aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_loginPasswordInput: {fileID: 840084602}
-  m_loginUsernameInput: {fileID: 1110765345}
+  m_loginPasswordInput: {fileID: 1110765345}
+  m_loginUsernameInput: {fileID: 840084602}
   m_registerUI: {fileID: 1975853}
   m_loginUI: {fileID: 841069499}
   m_text: {fileID: 1895557788}

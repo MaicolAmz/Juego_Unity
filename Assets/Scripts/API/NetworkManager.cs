@@ -13,14 +13,31 @@ public class NetworkManager : MonoBehaviour
     }
     private IEnumerator CO_CreateUser(string username, string password, Action<CResponse> response)
     {
-        WWWForm form = new WWWForm();
-        form.AddField("username", username);
-        form.AddField("password", password);
+        Usuario form = new Usuario();
+        form.username = username;
+        form.password = password;
 
-        WWW w = new WWW("https://test1unityyavirac.herokuapp.com/route/createUser.php", form);
-        yield return w;
-        Debug.Log(w.text);
-        response(JsonUtility.FromJson<CResponse>(w.text));
+        string jsonObject = JsonUtility.ToJson(form);
+
+        using (UnityWebRequest www = UnityWebRequest.Post("https://testyaviracunity.herokuapp.com/usuarios/register", jsonObject))
+        {
+            www.SetRequestHeader("content-type", "application/json");
+            www.uploadHandler.contentType = "application/json";
+            www.uploadHandler = new UploadHandlerRaw(System.Text.Encoding.UTF8.GetBytes(jsonObject));
+
+            yield return www.SendWebRequest();
+            if (www.isNetworkError || www.isHttpError)
+            {
+                Debug.LogError(www.error);
+                string result = System.Text.Encoding.UTF8.GetString(www.downloadHandler.data);
+                response(JsonUtility.FromJson<CResponse>(result));
+            }
+            else
+            {
+                string result = System.Text.Encoding.UTF8.GetString(www.downloadHandler.data);
+                response(JsonUtility.FromJson<CResponse>(result));
+            }
+        }
     }
 
     public void CheckUser(string username, string password, Action<CResponse> response)
@@ -29,13 +46,37 @@ public class NetworkManager : MonoBehaviour
     }
     private IEnumerator CO_CheckUser(string username, string password, Action<CResponse> response)
     {
-        WWWForm form = new WWWForm();
-        form.AddField("username", username);
-        form.AddField("password", password);
+        Usuario form = new Usuario();
+        form.username = username;
+        form.password = password;
 
-        WWW w = new WWW("https://test1unityyavirac.herokuapp.com/route/checkUser.php", form);
+        string jsonObject = JsonUtility.ToJson(form);
 
-        yield return w;
-        response(JsonUtility.FromJson<CResponse>(w.text));
+        using (UnityWebRequest www = UnityWebRequest.Post("https://testyaviracunity.herokuapp.com/usuarios/login", jsonObject))
+        {
+            www.SetRequestHeader("content-type", "application/json");
+            www.uploadHandler.contentType = "application/json";
+            www.uploadHandler = new UploadHandlerRaw(System.Text.Encoding.UTF8.GetBytes(jsonObject));
+
+            yield return www.SendWebRequest();
+            if (www.isNetworkError || www.isHttpError)
+            {
+                Debug.LogError(www.error);
+                string result = System.Text.Encoding.UTF8.GetString(www.downloadHandler.data);
+                response(JsonUtility.FromJson<CResponse>(result));
+            }
+            else
+            {
+                string result = System.Text.Encoding.UTF8.GetString(www.downloadHandler.data);
+                response(JsonUtility.FromJson<CResponse>(result));
+            }
+        }
     }
+}
+[Serializable]
+public class Usuario
+{
+    public int id_usuarios;
+    public string username;
+    public string password;
 }
