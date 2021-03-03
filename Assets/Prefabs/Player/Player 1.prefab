@@ -338,6 +338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joystick: {fileID: 0}
   runSpeedHorizontal: 2
+  runSpeedVertical: 2
   runSpeed: 1.25
   jumpSpeed: 3
   doubleJumpSpeed: 2.5

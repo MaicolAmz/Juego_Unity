@@ -7,6 +7,8 @@ public class GetAllScores : MonoBehaviour
     public Transform tabla;
     public Transform plantillaScore;
 
+    public Button needLogueo;
+
     private PlayerSelectDB playerSelectDB = null;
 
     public void Awake()
@@ -45,7 +47,7 @@ public class GetAllScores : MonoBehaviour
         }
         else
         {
-            Debug.Log("Necesita Loguearse para saber");
+            needLogueo.gameObject.SetActive(true);
         }
     }
 }
