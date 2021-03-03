@@ -723,7 +723,7 @@ PrefabInstance:
     - target: {fileID: 7249389647857834630, guid: 0da980d380d934ad798daa79308d3bd9,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -54.831
+      value: -17.1
       objectReference: {fileID: 0}
     - target: {fileID: 7265571367560018073, guid: 0da980d380d934ad798daa79308d3bd9,
         type: 3}
@@ -759,6 +759,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358141575762163684, guid: 0da980d380d934ad798daa79308d3bd9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358141575762163684, guid: 0da980d380d934ad798daa79308d3bd9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358141575762163684, guid: 0da980d380d934ad798daa79308d3bd9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1622267711}
+    - target: {fileID: 8358141575762163684, guid: 0da980d380d934ad798daa79308d3bd9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358141575762163684, guid: 0da980d380d934ad798daa79308d3bd9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358141575762163684, guid: 0da980d380d934ad798daa79308d3bd9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8754663825325580112, guid: 0da980d380d934ad798daa79308d3bd9,
         type: 3}
@@ -805,6 +835,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &178228037 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5566703698095311980, guid: 0da980d380d934ad798daa79308d3bd9,
+    type: 3}
+  m_PrefabInstance: {fileID: 178228032}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &178228038 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8358141575762163684, guid: 0da980d380d934ad798daa79308d3bd9,
+    type: 3}
+  m_PrefabInstance: {fileID: 178228032}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &208327299
@@ -14599,8 +14653,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalFruits: {fileID: 1382367648}
   fruitsCollected: {fileID: 898432305}
+  puntaje: {fileID: 178228037}
   levelCleared: {fileID: 100191392}
   transition: {fileID: 900134003}
+  nextLevel: {fileID: 178228038}
 --- !u!4 &1622267712
 Transform:
   m_ObjectHideFlags: 0

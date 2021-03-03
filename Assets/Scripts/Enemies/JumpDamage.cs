@@ -46,6 +46,19 @@ public class JumpDamage : MonoBehaviour
     public void EnemyDie()
     {
         Destroy(gameObject);
+        if (PlayerPrefs.GetInt("puntajePreview").ToString().Length > 0)
+        {
+            aumentarPuntaje(gameObject.name, PlayerPrefs.GetInt("puntajePreview"));
+        }
+        else
+        {
+            aumentarPuntaje(gameObject.name, 0);
+        }
+    }
+
+    public void aumentarPuntaje(string tipo, int puntaje)
+    {
+        PlayerPrefs.SetInt("puntajePreview", puntaje += 10);
     }
 
 }

@@ -18,6 +18,7 @@ public class EscenasManager : MonoBehaviour
     [SerializeField] private InputField m_reEnterPasswordInput = null;
 
     private NetworkManager m_networkManager = null;
+
     public void Awake()
     {
         m_networkManager = GameObject.FindObjectOfType<NetworkManager>();
@@ -41,6 +42,8 @@ public class EscenasManager : MonoBehaviour
             {
                 useSinRegister();
                 m_text.color = Color.green;
+                PlayerPrefs.SetInt("id_usuarios", res.data.id_usuarios);
+                PlayerPrefs.SetString("username", res.data.username);
             }
             else
             {
@@ -67,6 +70,8 @@ public class EscenasManager : MonoBehaviour
                 if (res.done)
                 {
                     m_text.color = Color.green;
+                    PlayerPrefs.SetInt("id_usuarios", res.data.id_usuarios);
+                    PlayerPrefs.SetString("username", res.data.username);
                     useSinRegister();
                 }
                 else
@@ -81,6 +86,12 @@ public class EscenasManager : MonoBehaviour
             m_text.color = Color.red;
         }
     }
+
+    public void LogOut()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
     public void ShowLogin()
     {
         m_text.text = "";
@@ -97,6 +108,7 @@ public class EscenasManager : MonoBehaviour
 
     public void useSinRegister()
     {
+        LogOut();
         SceneManager.LoadScene("MainMenu");
     }
 

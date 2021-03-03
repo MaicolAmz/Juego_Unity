@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
+
 public class OpenDoor : MonoBehaviour
 {
     public Text text;
@@ -10,6 +10,14 @@ public class OpenDoor : MonoBehaviour
     public Button boton;
     public string levelName;
     private bool inDoor = false;
+
+    private PlayerSelectDB playerSelectDB = null;
+
+    public void Awake()
+    {
+        gameObject.AddComponent<PlayerSelectDB>();
+        playerSelectDB = gameObject.GetComponent<PlayerSelectDB>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,6 +36,27 @@ public class OpenDoor : MonoBehaviour
     }
     public void openNivel()
     {
-        SceneManager.LoadScene(levelName);
+        PlayerPrefs.SetInt("puntajePreview", 0);
+        PlayerPrefs.SetString("nivel", levelName);
+        
+        if (PlayerPrefs.GetString("username").Length > 0)
+        {
+            playerSelectDB.CheckPuntaje(PlayerPrefs.GetInt("id_usuarios").ToString(), delegate (CPuntaje res)
+            {
+                if (res.done)
+                {
+                    PlayerPrefs.SetInt("puntaje", Convert.ToInt32(res.data[0].puntaje));
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("puntaje", 0);
+                }
+                SceneManager.LoadScene(levelName);
+            });
+        } 
+        else
+        {
+            SceneManager.LoadScene(levelName);
+        }
     }
 }
